@@ -2,6 +2,16 @@
 
 *~
 
+#Unnecessary LaTeX output
+*.aux
+*.bbl
+*.blg
+*.log
+*.out
+*.toc
+*-eps-converted-to.pdf
+mcode.sty
+
 #Personal scripts for using the Shock package
 test-approx.lua
 analytical_approx.m
