@@ -1,0 +1,98 @@
+\NeedsTeXFormat{LaTeX2e}[2011/06/27]%Arbitrarily chosen but not too old
+\ProvidesPackage{custom_formatting}[2018/03/23 Custom formatting for my thesis]
+%\RequirePackage{custom_as}
+
+\RequirePackage{xparse}
+\RequirePackage{amsmath}
+
+%URW Grotesk font
+%\renewcommand*\sfdefault{ugq}
+
+%\usepackage{calligra}
+%\DeclareMathAlphabet{\mathcalligra}{T1}{calligra}{m}{n}
+%\DeclareFontShape{T1}{calligra}{m}{n}{<->s*[2.2]callig15}{}
+%\usepackage{scalerel}
+% \newcommand{\m}{\scaleobj{1.4}{\mathcalligra{m}}\,}
+% \newcommand{\vv}{\scaleobj{1.5}{\mathcalligra{v}}\,}
+% \newcommand{\x}{\scaleobj{1.5}{\mathcalligra{x}}\,}
+% \newcommand{\xx}{\scaleobj{1.4}{\mathcalligra{x}}\,}
+% \renewcommand{\t}{\scaleobj{1.4}{\mathcalligra{t}}\;}
+
+
+\usepackage[cal=boondox, scr=rsfs]{mathalfa}
+
+\swapcommands{\phi}{\varphi}
+\swapcommands{\Phi}{\varPhi}
+\swapcommands{\Psi}{\varPsi}
+
+
+\newcommand{\jj}{\mathrm{j}}
+\newcommand{\zz}{\mathrm{z}}
+\newcommand{\pp}{\mathrm{p}}
+\newcommand{\us}{\text{us}}
+\newcommand{\ds}{\text{ds}}
+%\newcommand{\tr}{\text{tr}} %Already exists!
+\newcommand{\MB}{\text{MB}}
+\newcommand{\Ad}{\text{Ad}}
+\newcommand{\A}{\text{A}}
+
+
+\newcommand{\M}{\mathscr{M}}
+\newcommand{\m}{\mathcal{m}}
+\newcommand{\vv}{\mathcal{v}}
+\newcommand{\x}{\mathcal{x}}
+\renewcommand{\t}{\mathcal{t}}
+\newcommand{\f}{\mathcal{f}}
+\newcommand{\n}{\mathcal{n}}
+
+\newcommand{\E}{\mathcal{E}}
+
+\newcommand{\epszero}{\varepsilon_{0}}
+\newcommand{\cs}{c_{\text{s}}}
+\newcommand{\hcs}{\hat{c}_{\text{s}}}
+\newcommand{\lD}{\lambda_{\text{D}}}
+\newcommand{\hlD}{\hat{\lambda}_{\text{D}}}
+
+
+
+\DeclareMathOperator\atanh{arctanh}
+\DeclareDocumentCommand\arctanh{}{\opbraces{\atanh}}
+
+
+
+%\DeclareMathOperator\erfc{erfc}
+%\let\complerrorfunction\erfc
+\DeclareMathOperator\complerrorfunction{erfc}
+\DeclareDocumentCommand\erfc{}{\opbraces{\complerrorfunction}}
+
+\DeclareMathOperator\JacobiSN{sn}
+\DeclareDocumentCommand\sn{}{\opbraces{\JacobiSN}}
+
+
+\DeclareMathOperator\JacobiCN{cn}
+\NewDocumentCommand\cn{}{\opbraces{\JacobiCN}}
+
+\DeclareMathOperator\JacobiDN{dn}
+\DeclareDocumentCommand\dn{}{\opbraces{\JacobiDN}}
+
+\DeclareMathOperator\sgn{sgn}
+
+%\newcommand*{\defeq}{\mathrel{\vcenter{\baselineskip0.5ex \lineskiplimit0pt
+%                     \hbox{\scriptsize.}\hbox{\scriptsize.}}}%
+%                 =}
+
+%
+\def\defeq{\@ifstar\@defeq\@@defeq}
+\def\defcolon{\mathrel{\vcenter{\baselineskip0.5ex \lineskiplimit0pt
+      \hbox{\scriptsize.}\hbox{\scriptsize.}}}}
+\def\@@defeq{\defcolon=}
+\def\@defeq{=\defcolon}
+
+
+%\def\OM{\@ifstar\@OM\@@OM}
+%\def\@OM#1{\mathcal{O}_{\mathrm{M}}(#1)}
+%\def\@@OM#1{\mathcal{O}_{\mathrm{M}}\qty(#1)}
+
+%\usepackage{suffix}
+%\newcommand{\OM}[1]{\mathcal{O}_{\mathrm{M}}\qty(#1)}
+%\WithSuffix{\newcommand{\OM*}[1]{\mathcal{O}_{\mathrm{M}}(#1)}}
