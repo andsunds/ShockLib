@@ -1,15 +1,9 @@
 #Ignoring these files and directories
 
 *~
-OLD/
-data/
 
 #Personal scripts for using the Shock package
-Ad_test.m
-collisions.m
-KdV_approx.m
-lambertwMOD.m
-main_Shocks.m
-solitons.m
-test_Shocks.m
-tmp.m
+test-approx.lua
+analytical_approx.m
+gkyl_visual.m
+gkyl_dist.m
