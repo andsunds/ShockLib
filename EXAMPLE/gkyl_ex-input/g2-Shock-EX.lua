@@ -54,7 +54,7 @@ ni0_hat = 1.0      -- ion density in some arbitary unit
 n0_hat=Z_i*ni0_hat -- =\sum_{j} Z_{j}*n_{j,0}, this is the norm. density
 ni0=ni0_hat/n0_hat -- normalized ion density
 
-cs_hat = math.sqrt( (Te_hat/n0_hat)*(Z_i^2*ni0/mi_hat) ) -- Sound speed
+cs_hat = math.sqrt( (Te_hat/n0_hat)*(Z_i^2*ni0_hat/mi_hat) ) -- Sound speed
 M=1.400 -- Mach number
 
 -- The zeta_x variables are normalized charge-to-mass-ratios of
@@ -63,8 +63,9 @@ M=1.400 -- Mach number
 -- See my notes on normalization under:
 -- SVN/erc/andsunds/Shock-project/normalizations/
 -- for more on this subject.
-zeta_i=(Z_i/mi_hat)*Te_hat/cs_hat^2
-zeta_e=(Z_e/me_hat)*Te_hat/cs_hat^2
+zeta0_hat=cs_hat^2/Te_hat
+zeta_i=(Z_i/mi_hat)/zeta0_hat
+zeta_e=(Z_e/me_hat)/zeta0_hat
 
 -- The far upstream densities
 ni1 = Approx.ni1(ni0, tau_i, zeta_i,M,filename) -- This calcuation is slow,
@@ -80,7 +81,7 @@ vTi=math.sqrt(math.abs(zeta_i/tau_i))
 
 -- Pre-defined upper and lower limits for the ION velocities
 -- (Needed to get dvIon)
-vLimIon={-50.0*vTi-uShock, 50.0*vTi-uShock}
+vLimIon={-40.0*vTi-uShock, 40.0*vTi-uShock}
 nCells=128
 dvIon=(vLimIon[2]-vLimIon[1])/nCells
 -- NOTE: dvIon is used to smooth out the discontinuity in the distribution
@@ -118,7 +119,7 @@ plasmaApp = Plasma.App {
       --    charge = zeta_e, mass = 1,
       -- as we do for ions. Instead, we have to treat electrons a bit
       -- differntly by setting:
-      charge = -1, mass = math.abs(1/zeta_e),
+      charge = Z_e, mass = Z_e/zeta_e,
       -- velocity space grid
       lower = {-5.0*vTe-uShock},
       upper = {5.0*vTe-uShock},
@@ -134,7 +135,7 @@ plasmaApp = Plasma.App {
       bcx = { Plasma.VlasovSpecies.bcCopy, Plasma.VlasovSpecies.bcCopy},
       evolve = true, -- evolve species?
       -- write out density, flow, (total energy, and heat flux moments)
-      diagnosticMoments = { "M0", "M1i" },
+      -- diagnosticMoments = { "M0", "M1i" },
       -- coll = Plasma.VmLBOCollisions { collFreq = nuElc, },
    },
    -- protons
@@ -142,7 +143,7 @@ plasmaApp = Plasma.App {
       -- Since we only have the normalized charge-to-mass ratio, we
       -- can simply force the "mass" to be 1, and then set the
       -- "chrage" to be zeta_i:
-      charge = zeta_i, mass = 1, 
+      charge = Z_i, mass = Z_i/zeta_i, 
       -- velocity space grid
       lower = {vLimIon[1]},
       upper = {vLimIon[2]},
@@ -158,7 +159,7 @@ plasmaApp = Plasma.App {
       bcx = {Plasma.VlasovSpecies.bcCopy, Plasma.VlasovSpecies.bcCopy},
       evolve = true, -- evolve species?
       -- write out density, flow, (total energy, and heat flux moments)
-      diagnosticMoments = { "M0", "M1i" },
+      -- diagnosticMoments = { "M0", "M1i" },
       -- coll = Plasma.VmLBOCollisions { collFreq = nuIon, },
    },
 

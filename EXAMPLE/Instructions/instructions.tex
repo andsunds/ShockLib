@@ -182,14 +182,14 @@ charge-to-mass ratio, $\zeta_\jj$, and not the individual charges
 
 This is clearly exemplified in Newton's second law and electric force,
 \begin{equation}\label{eq:hat_NewtonII}
-\hat{m}\dv[2]{\hat{x}}{\hat{t}}=\hat{e}Z\,\hat{E},
+\hat{m}\dv{\hat{v}}{\hat{t}}=\hat{e}Z\,\hat{E},
 \end{equation}
 which normalizes to
 \begin{equation}
-\frac{\hlD}{\hlD^2/\hcs^2}\dv[2]{x}{t}
+\frac{\hcs}{\hlD/\hcs}\dv{v}{t}
 =\frac{\hat{e}Z}{\hat{m}} \frac{\hat{T}_\ee}{\hlD\hat{e}}E
 \quad\Longrightarrow\quad
-\dv[2]{x}{t}
+\dv{v}{t}
 =\frac{Z/\hat{m}}{\hcs^2/\hat{T}_\ee} E
 \equiv \zeta E.
 \end{equation}
@@ -200,15 +200,12 @@ specify both the mass and charge of each species, which will
 be used to evolve the distribution function.
 
 This problem is however
-easily mended by specifying either 
-\{$\mathtt{mass}=1$, $\mathtt{charge}=\zeta_{\ii}$\} for ions, and 
-\{$\mathtt{mass}=1/|\zeta_{\ee}|$, $\mathtt{charge}=-1$\} for electrons. In
-theory, the first alternative should work just as well for electrons
-as well. However, since the normalization of $\zeta$ is with respect
-to the ions, $\zeta_{\ee}\sim-2000$ for electrons, and Gkyl doesn't seem to
-like the charge to be that large. In the same way it's also safes to
-set the mass of the electron to be positive, and the charge to be
-negative.
+easily mended by specifying 
+\texttt{\{charge~=~$Z_a$,~mass~=~$Z_{a}/\zeta_{a}$\}}, where $a$ is
+just an arbitrary species (ions or electrons) index. We have to
+specify the charge as $Z_a$ for the sake of the field solver. Then,
+since $\zeta$ is a normalized charge-to-mass ratio, $Z_{a}/\zeta_{a}$
+is a normalized mass.  
 
 \subsection{The electron distribution function}
 For now the electron distribution function is set as a
