@@ -1,4 +1,6 @@
-function erf(x)
+local P={} -- List of functions to be returned when used as a package
+
+function P.erf(x)
    --[[ 
       Function from the picomath project (public domain):
       https://github.com/ghewgill/picomath
@@ -13,27 +15,28 @@ function erf(x)
    a5 =  1.061405429
    p  =  0.3275911
    
-   -- Save the sign of x
-   sign = 1
+   -- Checks the sign of x
+   neg = false
    if x < 0 then
-      sign = -1
+      neg = true
+      x=-x
    end
-   x = math.abs(x)
+   --x = math.abs(x)
    
    -- A&S formula 7.1.26
    t = 1.0/(1.0 + p*x)
    y = 1.0 - (((((a5*t + a4)*t) + a3)*t + a2)*t + a1)*t*math.exp(-x*x)
+
+   -- Adjusts for the sign of x
+   if neg then y=-y end
    
-   return sign*y
+   return y
 end
 
-function erfc(x)
+function P.erfc(x)
    -- Complementary error function
-   return 1-erf(x)
+   return 1.000000000-P.erf(x)
 end
 
--- Exported functions
-local pmath={}
-pmath.erf  = erf
-pmath.erfc = erfc
-return pmath
+-- Exporting the functions
+return P
