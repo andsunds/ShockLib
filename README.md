@@ -1,5 +1,5 @@
 # ShockLib
-A library of programs surrounding the semi-analytical shocks developed here at the plasma theory group, Chalmers University of Technology.
+A library of scripts pertaining to the calculation of semi-analytical shocks and how to export them to Gkyl. This library has been developed at the Plasma Theory group, Chalmers University of Technology, by Andréas Sundström (c) 2018.
 
 The Matlab library contains, among others, two packages: Shock_pkg and Shock_pkg_old.   
 These packages contain the differnent Shock classes used to calculate a shock. The old package is no longer maintained and not recommended.   
